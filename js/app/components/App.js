@@ -13,7 +13,7 @@ class App extends React.Component {
     let y = w.innerHeight|| e.clientHeight|| g.clientHeight;
     return (
       <div style={{fontFamily:'monospace', fontSize:'1em'}}>
-        <Screen rows={parseInt(y/16, 10)} cols={parseInt(x/16, 10)}/>
+        <Screen rows={parseInt(y/16, 10)} cols={parseInt(x/16, 10)} credits={[]}/>
       </div>
     )
   }
