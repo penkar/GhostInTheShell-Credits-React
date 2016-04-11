@@ -5,15 +5,16 @@ class Row extends React.Component {
     cols: PropTypes.number,
     rows: PropTypes.number,
     credits: PropTypes.array,
-    string: PropTypes.string
+    string: PropTypes.string,
+    int: PropTypes.number
   };
   cols() {
     let array = []
-    const {cols, rows} = this.props
+    const {cols, rows, int} = this.props
     let {string} = this.props;
     let num = parseInt(Math.random() * 140, 10)
     for(let i = 0; i < this.props.cols; i++){
-      array.push(<Col key={i} col={i} cols={cols} rows={rows} str={string[(i + num) % 130]}/>)
+      array.push(<Col key={i} int={int} col={i} cols={cols} rows={rows} str={string[(i + num) % 130]}/>)
     }
     return array;
   }

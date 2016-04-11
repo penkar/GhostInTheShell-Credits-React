@@ -10,7 +10,8 @@ class Col extends React.Component {
     col: PropTypes.number,
     cols: PropTypes.number,
     rows: PropTypes.number,
-    str: PropTypes.string
+    str: PropTypes.string,
+    int: PropTypes.number
   };
 
   componentDidUpdate() {
@@ -32,9 +33,6 @@ class Col extends React.Component {
   }
 
   render() {
-    if(this.props.col === 0){
-      console.log(this.state, this.props)
-    };
     return <div style={{display:"inline"}}>{::this._string()}</div>
   }
 }

@@ -5,7 +5,13 @@ class Screen extends React.Component {
   constructor(props) {
     super(props)
     let string = ::this._numString();
-    this.state = {string}
+    this.state = {string, interval:0}
+  }
+
+  componentDidMount() {
+    setInterval( () => {
+      this.setState({interval: this.state.interval + 1})
+    }, 200)
   }
 
   static propTypes = {
@@ -24,15 +30,15 @@ class Screen extends React.Component {
 
   _rows() {
     const {cols, rows, credits} = this.props
-    const {string} = this.state
+    const {string, interval} = this.state
     let array = []
     for(let i = 0; i < this.props.rows; i++){
-      array.push(<Row key={i} cols={cols} rows={rows} string={string}/>);
+      array.push(<Row key={i} cols={cols} rows={rows} string={string} int={interval}/>);
     }
     return [array]
   }
 
-  render() {
+  render() {//console.log(1,this.state);
     return <div style={{display:'block'}}>{::this._rows()}</div>
   }
 }
