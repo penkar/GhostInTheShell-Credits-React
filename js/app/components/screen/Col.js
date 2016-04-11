@@ -27,9 +27,8 @@ class Col extends React.Component {
   _string() {
     if(this.state.bool){
       return this.props.str;
-    } else {
-      return ' ';
     }
+    return ' ';
   }
 
   render() {

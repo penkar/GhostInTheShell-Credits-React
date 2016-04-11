@@ -3,16 +3,16 @@ import Row from './Row.js'
 
 class Screen extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     let string = ::this._numString();
     this.state = {string, interval:0}
   }
 
-  componentDidMount() {
-    setInterval( () => {
-      this.setState({interval: this.state.interval + 1})
-    }, 200)
-  }
+  // componentDidMount() {
+  //   setInterval( () => {
+  //     this.setState({interval: this.state.interval + 1})
+  //   }, 200)
+  // }
 
   static propTypes = {
     cols: PropTypes.number,
@@ -23,22 +23,23 @@ class Screen extends React.Component {
   _numString() {
     let string = '';
     for(let i = 0; i < 10; i++){
-      string += Math.random().toString().substr(2, 15)
+      string += Math.random().toString().substr(2, 15);
     }
     return string;
   }
 
   _rows() {
-    const {cols, rows, credits} = this.props
-    const {string, interval} = this.state
-    let array = []
+    const {cols, rows, credits} = this.props;
+    const {string, interval} = this.state;
+    let array = [];
     for(let i = 0; i < this.props.rows; i++){
-      array.push(<Row key={i} cols={cols} rows={rows} string={string} int={interval}/>);
+      let credit = credits[i-2]
+      array.push(<Row key={i} cols={cols} rows={rows} string={string} int={interval} credit={credit}/>);
     }
-    return [array]
+    return array;
   }
 
-  render() {//console.log(1,this.state);
+  render() {//console.log(1,this.state,2,this.props);
     return <div style={{display:'block'}}>{::this._rows()}</div>
   }
 }
