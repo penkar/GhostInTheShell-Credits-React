@@ -11,7 +11,7 @@ class Screen extends React.Component {
   componentDidMount() {
     setInterval( () => {
       this.setState({interval: this.state.interval + 1});
-    }, 250)
+    }, 250);
   }
 
   static propTypes = {
