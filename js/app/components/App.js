@@ -3,7 +3,7 @@ import Screen from './screen/Screen.js'
 
 let credits = [
   'Producer',
-  'Allan Wake'
+  'John Smith'
 ]
 
 
@@ -18,7 +18,7 @@ class App extends React.Component {
     let x = w.innerWidth || e.clientWidth || g.clientWidth;
     let y = w.innerHeight|| e.clientHeight|| g.clientHeight;
     return (
-      <div style={{fontFamily:'monospace', fontSize:'2em', textAlign:'center', color:'green', backgroundColor:'black'}}>
+      <div style={{fontFamily:'monospace', fontSize:'1em', textAlign:'center', color:'green', backgroundColor:'black'}}>
         <Screen rows={parseInt(y/30, 10)} cols={parseInt(x/16, 10)} credits={credits}/>
       </div>
     )

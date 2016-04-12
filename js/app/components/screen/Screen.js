@@ -8,11 +8,11 @@ class Screen extends React.Component {
     this.state = {string, interval:0}
   }
 
-  // componentDidMount() {
-  //   setInterval( () => {
-  //     this.setState({interval: this.state.interval + 1})
-  //   }, 200)
-  // }
+  componentDidMount() {
+    setInterval( () => {
+      this.setState({interval: this.state.interval + 1})
+    }, 250)
+  }
 
   static propTypes = {
     cols: PropTypes.number,
@@ -34,12 +34,12 @@ class Screen extends React.Component {
     let array = [];
     for(let i = 0; i < this.props.rows; i++){
       let credit = credits[i-2]
-      array.push(<Row key={i} cols={cols} rows={rows} string={string} int={interval} credit={credit}/>);
+      array.push(<Row key={i} cols={cols} rows={rows} string={string} credit={credit} int={interval}/>);
     }
     return array;
   }
 
-  render() {//console.log(1,this.state,2,this.props);
+  render() {
     return <div style={{display:'block'}}>{::this._rows()}</div>
   }
 }
