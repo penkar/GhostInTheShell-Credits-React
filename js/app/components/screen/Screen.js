@@ -5,12 +5,12 @@ class Screen extends React.Component {
   constructor(props) {
     super(props);
     let string = ::this._numString();
-    this.state = {string, interval:0}
+    this.state = {string, interval:0};
   }
 
   componentDidMount() {
     setInterval( () => {
-      this.setState({interval: this.state.interval + 1})
+      this.setState({interval: this.state.interval + 1});
     }, 250)
   }
 

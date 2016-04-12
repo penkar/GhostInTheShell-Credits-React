@@ -3,14 +3,15 @@ import Screen from './screen/Screen.js'
 import {Full} from './params/'
 
 let credits = [
-  'Producer',
-  'John Smith'
+  "Yeah",
+  "I'm in your head",
+  "Bitch"
 ]
 
 
 class App extends React.Component {
   componentWillMount() {
-    console.log(Full);
+    // console.log(Full);
     let body = document.getElementsByTagName('body')[0]
     body.style.margin = '0px'
   }
