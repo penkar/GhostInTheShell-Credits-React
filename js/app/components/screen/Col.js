@@ -36,7 +36,7 @@ class Col extends React.Component {
   }
 
   render() {
-    return <span style={{display:"inline-block", width:'1em', height:'1em'}}>{::this._string()}</span>
+    return <span style={this.props.params.col}>{::this._string()}</span>
   }
 }
 

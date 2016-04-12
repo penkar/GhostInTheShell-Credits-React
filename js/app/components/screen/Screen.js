@@ -29,18 +29,21 @@ class Screen extends React.Component {
   }
 
   _rows() {
-    const {cols, rows, credits} = this.props;
+    const {cols, rows, credits, params} = this.props;
     const {string, interval} = this.state;
     let array = [];
     for(let i = 0; i < this.props.rows; i++){
       let credit = credits[i-2]
-      array.push(<Row key={i} cols={cols} string={string} credit={credit} int={interval}/>);
+      array.push(
+        <Row key={i} cols={cols} string={string} credit={credit} int={interval} params={params}/>
+      );
     }
     return array;
   }
 
   render() {
-    return <div style={{display:'block'}}>{::this._rows()}</div>
+    const {screen} = this.props.params
+    return <div style={screen}>{::this._rows()}</div>
   }
 }
 
