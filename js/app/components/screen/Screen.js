@@ -34,7 +34,7 @@ class Screen extends React.Component {
     let array = [];
     for(let i = 0; i < this.props.rows; i++){
       let credit = credits[i-2]
-      array.push(<Row key={i} cols={cols} rows={rows} string={string} credit={credit} int={interval}/>);
+      array.push(<Row key={i} cols={cols} string={string} credit={credit} int={interval}/>);
     }
     return array;
   }

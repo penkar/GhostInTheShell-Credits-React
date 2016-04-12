@@ -9,7 +9,6 @@ class Col extends React.Component {
   static propTypes = {
     col: PropTypes.number,
     cols: PropTypes.number,
-    rows: PropTypes.number,
     str: PropTypes.string,
     tstr: PropTypes.string,
     int: PropTypes.number
@@ -23,8 +22,7 @@ class Col extends React.Component {
   }
 
   componentDidUpdate() {
-    const {cols, col, int} = this.props;
-    let avg = cols / 2;
+    const {int} = this.props;
     if( Math.random() < (int/ 50) ){
       this.setState({bool:false});
     }
@@ -34,11 +32,11 @@ class Col extends React.Component {
     if(this.state.bool){
       return this.props.str;
     }
-    return this.props.tstr || ' ';
+    return this.props.tstr;
   }
 
   render() {
-    return <div style={{display:"inline-block", width:'1em', height:'1em'}}>{::this._string()}</div>
+    return <span style={{display:"inline-block", width:'1em', height:'1em'}}>{::this._string()}</span>
   }
 }
 
