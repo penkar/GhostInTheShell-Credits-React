@@ -8,18 +8,23 @@ class Screen extends React.Component {
     this.state = {string, interval:0};
   }
 
-  componentDidMount() {
-    setInterval( () => {
-      this.setState({interval: this.state.interval + 1});
-    }, 250);
-  }
-
   static propTypes = {
     cols: PropTypes.number,
     rows: PropTypes.number,
     credits: PropTypes.array
   };
 
+  componentDidUpdate() {
+    setTimeout( () => {
+      this.setState({interval: this.state.interval + 1});
+    }, 250);
+  }
+
+  componentDidMount() {
+    setTimeout( () => {
+      this.setState({interval: this.state.interval + 1});
+    }, 250);
+  }
   _numString() {
     let string = '';
     for(let i = 0; i < 10; i++){

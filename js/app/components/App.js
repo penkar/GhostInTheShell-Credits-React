@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import Screen from './screen/Screen.js'
-import {Full} from './params/'
+import { ParamGuide } from './params/'
 
 let credits = [
   "Ghost in the Shell 1995 Opening Credits",
@@ -11,15 +11,10 @@ let credits = [
 
 class App extends React.Component {
   static propTypes = {
-    height: PropTypes.number,
-    minHeight: PropTypes.number,
-    width: PropTypes.number,
-    minWidth: PropTypes.number,
-    textColor: PropTypes.string,
-    backgroundColor: PropTypes.string
+    params: PropTypes.object
   };
 
-  componentWillMount() {console.log(this.props.height);
+  componentWillMount() {
     let body = document.getElementsByTagName('body')[0];
     body.style.margin = '0px';
   }
@@ -31,12 +26,17 @@ class App extends React.Component {
     return {x,y};
   }
 
-  _style() {
-    return Full;
+  _params() {
+    const { height, minHeight, width, minWidth, color, backgroundColor } = this.props.params;
+    let obj = {color, backgroundColor};
+    if(height || minHeight || width || minWidth){
+      obj.full = true;
+    }
+    return ParamGuide(this.props.params);
   }
 
   _props() {
-    const { height, minHeight, width, minWidth } = this.props;
+    const { height, minHeight, width, minWidth } = this.props.params;
     let { x, y } = ::this._screenDimension();
     let rows =  Math.max(height || parseInt(y/16, 10), minHeight || 0), cols = Math.max(width || parseInt(x/16, 10), minWidth || 0);
     return {rows, cols}
@@ -44,9 +44,10 @@ class App extends React.Component {
 
   render() {
     let {rows, cols} = ::this._props();
+    let params = ::this._params();
     return (
-      <div style={Full.app}>
-        <Screen rows={rows} cols={cols} credits={credits} params={::this._style()}/>
+      <div style={params.app}>
+        <Screen rows={rows} cols={cols} credits={credits} params={params}/>
       </div>
     )
   }

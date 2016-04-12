@@ -2,6 +2,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/';
+let params = {
+  height:0,
+  width:0,
+  minHeight:0,
+  minWidth:0,
+  color:null,
+  backgroundColor:null
+};
 // import { Provider } from 'react-redux';
 // import { createStore } from 'redux';
 // import { Counts } from './reducers';
@@ -11,6 +19,6 @@ import App from './components/';
 // <Provider store={store}>
 // </Provider>,
 ReactDOM.render(
-    <App height={20} width={50}/>,
+    <App params={params}/>,
 	document.getElementById('app')
 );
