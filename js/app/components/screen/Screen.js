@@ -5,7 +5,7 @@ class Screen extends React.Component {
   constructor(props) {
     super(props);
     let string = ::this._numString();
-    this.state = {string, int:0};
+    this.state = {string, int:0, a:0, z:props.rows};
   }
 
   static propTypes = {
@@ -13,6 +13,11 @@ class Screen extends React.Component {
     rows: PropTypes.number,
     credits: PropTypes.array
   };
+
+  _recycle() {
+    let {a, z} = this.state;
+    this.setState({ a:z+1, z:z+z+1, int:0 });
+  }
 
   componentDidMount() {
     setInterval( () => {
@@ -29,13 +34,11 @@ class Screen extends React.Component {
 
   _rows() {
     const {cols, rows, credits, params} = this.props;
-    const {string, int} = this.state;
+    const {string, int, a, z} = this.state;
     let array = [];
-    for(let i = 0; i < this.props.rows; i++){
-      let credit = credits[i-2]
-      array.push(
-        <Row key={i} cols={cols} string={string} credit={credit} int={int} params={params}/>
-      );
+    for(let i = a; i < z; i++){
+      let credit = credits[i - 2 - a];
+      array.push(<Row key={i} cols={cols} string={string} credit={credit} int={int} params={params} rec={a===i ? ::this._recycle : null}/>);
     }
     return array;
   }

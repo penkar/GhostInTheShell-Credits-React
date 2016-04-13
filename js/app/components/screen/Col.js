@@ -35,8 +35,14 @@ class Col extends React.Component {
     return this.props.tstr;
   }
 
+  _click() {
+    if(this.props.rec){
+      ::this.props.rec();
+    }
+  }
+
   render() {
-    return <span style={this.props.params.col}>{::this._string()}</span>
+    return <span style={this.props.params.col} onClick={::this._click}>{::this._string()}</span>
   }
 }
 
