@@ -15,17 +15,14 @@ class Col extends React.Component {
   };
 
   shouldComponentUpdate(nextProps, nextState) {
-    if( this.state.bool){
+    if( this.state.bool ){
       return true;
     }
     return false;
   }
 
   componentDidUpdate() {
-    const {int} = this.props;
-    if(!int){
-      return this.setState({bool:true});
-    }
+    const {int} = this.props
     if( Math.random() < (int/ 50) ){
       return this.setState({bool:false});
     }

@@ -5,7 +5,7 @@ class Screen extends React.Component {
   constructor(props) {
     super(props);
     let string = ::this._numString();
-    this.state = {string, interval:0};
+    this.state = {string, int:0};
   }
 
   static propTypes = {
@@ -14,20 +14,14 @@ class Screen extends React.Component {
     credits: PropTypes.array
   };
 
-  componentDidUpdate() {
-    setTimeout( () => {
-      this.setState({interval: this.state.interval + 1});
-    }, 250);
-  }
-
   componentDidMount() {
-    setTimeout( () => {
-      this.setState({interval: this.state.interval + 1});
+    setInterval( () => {
+      this.setState({int: this.state.int + 1});
     }, 250);
   }
   _numString() {
     let string = '';
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 5; i++){
       string += Math.random().toString().substr(2, 15);
     }
     return string;
@@ -35,12 +29,12 @@ class Screen extends React.Component {
 
   _rows() {
     const {cols, rows, credits, params} = this.props;
-    const {string, interval} = this.state;
+    const {string, int} = this.state;
     let array = [];
     for(let i = 0; i < this.props.rows; i++){
       let credit = credits[i-2]
       array.push(
-        <Row key={i} cols={cols} string={string} credit={credit} int={interval} params={params}/>
+        <Row key={i} cols={cols} string={string} credit={credit} int={int} params={params}/>
       );
     }
     return array;

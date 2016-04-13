@@ -13,11 +13,11 @@ class Row extends React.Component {
     const { cols, int, string, params } = this.props;
     const credit = this.props.credit || '';
     let array = [];
-    let num = parseInt(Math.random() * 140, 10);
+    let num = parseInt(Math.random() * 60, 10);
     let offset = parseInt((cols - credit.length) / 2, 10);
     for(let i = 0; i < this.props.cols; i++){
       let tstr = credit[i - offset] || ' ';
-      array.push(<Col key={i} int={int} str={string[(i + num) % 130]} tstr={tstr} params={params}/>);
+      array.push(<Col key={i} int={int} str={string[num + i % 10]} tstr={tstr} params={params}/>);
     }
     return array;
   }
