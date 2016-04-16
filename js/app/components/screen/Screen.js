@@ -15,8 +15,9 @@ class Screen extends React.Component {
   };
 
   _recycle() {
+    let {rows} = this.props
     let {a, z} = this.state;
-    this.setState({ a:z+1, z:z+z+1, int:0 });
+    this.setState({ a:a + rows, z:z+rows, int:0 });
   }
 
   componentDidMount() {
@@ -24,6 +25,7 @@ class Screen extends React.Component {
       this.setState({int: this.state.int + 1});
     }, 250);
   }
+
   _numString() {
     let string = '';
     for(let i = 0; i < 5; i++){

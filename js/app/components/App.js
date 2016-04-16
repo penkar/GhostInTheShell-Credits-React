@@ -2,16 +2,10 @@ import React, { PropTypes } from 'react'
 import Screen from './screen/Screen.js'
 import { ParamGuide } from './params/'
 
-let credits = [
-  "Ghost in the Shell 1995 Opening Credits",
-  "By Jeffrey Penkar",
-  "http://jspenkar.com"
-];
-
-
 class App extends React.Component {
   static propTypes = {
-    params: PropTypes.object
+    params: PropTypes.object,
+    credits: PropTypes.array
   };
 
   componentWillMount() {
@@ -47,7 +41,7 @@ class App extends React.Component {
     let params = ::this._params();
     return (
       <div style={params.app}>
-        <Screen rows={rows} cols={cols} credits={credits} params={params}/>
+        <Screen rows={rows} cols={cols} credits={this.props.credits} params={params}/>
       </div>
     )
   }

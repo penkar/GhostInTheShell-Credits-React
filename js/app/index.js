@@ -10,6 +10,13 @@ let params = {
   color:null,
   backgroundColor:null
 };
+
+let credits = [
+  "Ghost in the Shell 1995 Opening Credits",
+  "By Jeffrey Penkar",
+  "http://jspenkar.com"
+];
+
 // import { Provider } from 'react-redux';
 // import { createStore } from 'redux';
 // import { Counts } from './reducers';
@@ -19,6 +26,6 @@ let params = {
 // <Provider store={store}>
 // </Provider>,
 ReactDOM.render(
-    <App params={params}/>,
+    <App params={params} credits={credits}/>,
 	document.getElementById('app')
 );

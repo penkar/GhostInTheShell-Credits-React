@@ -22,8 +22,8 @@ class Col extends React.Component {
   }
 
   componentDidUpdate() {
-    const {int} = this.props
-    if( Math.random() < (int/ 50) ){
+    const {int, rand} = this.props
+    if( rand < (int/ 50) ){
       return this.setState({bool:false});
     }
   }
@@ -31,8 +31,11 @@ class Col extends React.Component {
   _string() {
     if(this.state.bool){
       return this.props.str;
+    } else if(this.props.rec){
+      return <span onClick={::this._click}>&#x02717;</span>
+    } else {
+      return this.props.tstr;
     }
-    return this.props.tstr;
   }
 
   _click() {
@@ -42,7 +45,7 @@ class Col extends React.Component {
   }
 
   render() {
-    return <span style={this.props.params.col} onClick={::this._click}>{::this._string()}</span>
+    return <span style={this.props.params.col}>{::this._string()}</span>
   }
 }
 
