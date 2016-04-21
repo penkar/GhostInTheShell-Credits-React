@@ -43,31 +43,29 @@ class App extends React.Component {
   }
 
   _iterate() {
-    const {count} = this.state;
+    const { count } = this.state;
     ::this.setState({count:count+1});
   }
 
-  _credits() {
-    const {credits} = this.props;
-    const {count} = this.state;
+  _credits(params) {
+    const { credits } = this.props;
+    const { count } = this.state;
     if( Array.isArray(credits) ) {
-      console.log('Array')
       return credits;
     } else {
       if(credits[count+1]){
-        setTimeout( () => { ::this._iterate() }, 5000)
+        setTimeout( () => { ::this._iterate() }, 1000 * params.time )
       }
-      console.log('Object')
       return credits[count];
     }
   }
 
-  render() {console.log(this.state.count);
-    let {rows, cols} = ::this._props();
+  render() {
+    let { rows, cols } = ::this._props();
     let params = ::this._params();
     return (
       <div style={params.app}>
-        <Screen rows={rows} cols={cols} credits={::this._credits()} params={params}/>
+        <Screen rows={rows} cols={cols} credits={::this._credits(params)} params={params}/>
       </div>
     )
   }

@@ -2,7 +2,8 @@ export function ParamGuide(obj){
   let full = !!obj.height || !!obj.width;
   let display = full ? 'inline-block' : 'block';
   let params = {
-    reps: 4,
+    time: obj.time || 5,
+    reps: obj.reps || 4,
     len: 5,
     recycle: true,
     app: {

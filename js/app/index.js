@@ -3,12 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/';
 let params = {
-  height:0,
-  width:0,
-  minHeight:0,
-  minWidth:0,
-  color:null,
-  backgroundColor:null
+  time: 2 ,
+  reps: 4,
+  height: 0,
+  width: 0,
+  minHeight: 0,
+  minWidth: 0,
+  color: null,
+  backgroundColor: null
 };
 
 let credits = [
@@ -34,14 +36,6 @@ let credits2 = {
   ]
 }
 
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import { Counts } from './reducers';
-//
-// // let store = createStore(Counts);
-//
-// <Provider store={store}>
-// </Provider>,
 ReactDOM.render(
     <App params={params} credits={credits2}/>,
 	document.getElementById('app')

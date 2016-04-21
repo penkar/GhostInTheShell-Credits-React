@@ -28,9 +28,10 @@ class Screen extends React.Component {
   }
 
   componentDidMount() {
+    const { reps } = this.props.params;
     setInterval( () => {
       this.setState({int: this.state.int + 1});
-    }, 250);
+    }, 1000 / reps );
   }
 
   _numString() {
