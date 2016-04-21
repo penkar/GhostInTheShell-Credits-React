@@ -3,9 +3,15 @@ import Screen from './screen/Screen.js'
 import { ParamGuide } from './params/'
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count:0
+    }
+  }
   static propTypes = {
     params: PropTypes.object,
-    credits: PropTypes.array
+    credits: PropTypes.any
   };
 
   componentWillMount() {
@@ -36,12 +42,32 @@ class App extends React.Component {
     return {rows, cols}
   }
 
-  render() {
+  _iterate() {
+    const {count} = this.state;
+    ::this.setState({count:count+1});
+  }
+
+  _credits() {
+    const {credits} = this.props;
+    const {count} = this.state;
+    if( Array.isArray(credits) ) {
+      console.log('Array')
+      return credits;
+    } else {
+      if(credits[count+1]){
+        setTimeout( () => { ::this._iterate() }, 5000)
+      }
+      console.log('Object')
+      return credits[count];
+    }
+  }
+
+  render() {console.log(this.state.count);
     let {rows, cols} = ::this._props();
     let params = ::this._params();
     return (
       <div style={params.app}>
-        <Screen rows={rows} cols={cols} credits={this.props.credits} params={params}/>
+        <Screen rows={rows} cols={cols} credits={::this._credits()} params={params}/>
       </div>
     )
   }

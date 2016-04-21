@@ -17,6 +17,23 @@ let credits = [
   "http://jspenkar.com"
 ];
 
+let credits2 = {
+  0: [
+    "00000000000000000",
+    "00000000000000000",
+    "00000000000000000",
+    "00000000000000000",
+    "00000000000000000"
+  ],
+  1: [
+    "11111111111111111",
+    "11111111111111111",
+    "11111111111111111",
+    "11111111111111111",
+    "11111111111111111"
+  ]
+}
+
 // import { Provider } from 'react-redux';
 // import { createStore } from 'redux';
 // import { Counts } from './reducers';
@@ -26,6 +43,6 @@ let credits = [
 // <Provider store={store}>
 // </Provider>,
 ReactDOM.render(
-    <App params={params} credits={credits}/>,
+    <App params={params} credits={credits2}/>,
 	document.getElementById('app')
 );

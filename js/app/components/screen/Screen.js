@@ -20,6 +20,13 @@ class Screen extends React.Component {
     this.setState({ a:a + rows, z:z+rows, int:0 });
   }
 
+  componentWillUpdate(nextProps, nextState) {
+    if(nextProps.credits !== this.props.credits){
+      ::this._recycle();
+      console.log('recycle');
+    }
+  }
+
   componentDidMount() {
     setInterval( () => {
       this.setState({int: this.state.int + 1});
