@@ -4,10 +4,10 @@ import { ParamGuide } from './params/'
 
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       count:0
-    }
+    };
   }
   static propTypes = {
     params: PropTypes.object,
@@ -47,14 +47,20 @@ class App extends React.Component {
     ::this.setState({count:count+1});
   }
 
+  _unIterate() {
+    ::this.setState({count:0});
+  }
+
   _credits(params) {
     const { credits } = this.props;
     const { count } = this.state;
     if( Array.isArray(credits) ) {
       return credits;
     } else {
-      if(credits[count+1]){
+      if(credits[ count + 1 ]){
         setTimeout( () => { ::this._iterate() }, 1000 * params.time )
+      } else if( params.recover ){
+        setTimeout( () => { ::this._unIterate() }, 1000 * params.time )
       }
       return credits[count];
     }
@@ -65,7 +71,7 @@ class App extends React.Component {
     let params = ::this._params();
     return (
       <div style={params.app}>
-        <Screen rows={rows} cols={cols} credits={::this._credits(params)} params={params}/>
+        <Screen rows={ rows } cols={ cols } credits={ ::this._credits(params) } params={ params }/>
       </div>
     )
   }

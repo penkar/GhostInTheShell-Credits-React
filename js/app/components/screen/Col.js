@@ -22,9 +22,9 @@ class Col extends React.Component {
   }
 
   componentDidUpdate() {
-    const {int, rand} = this.props
-    if( rand < (int/ 50) ){
-      return this.setState({bool:false});
+    const { int, rand } = this.props
+    if( rand < ( int/ 50) ){
+      return this.setState({ bool:false });
     }
   }
 

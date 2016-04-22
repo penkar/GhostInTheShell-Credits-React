@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react'
+import React, { PropTypes } from 'react'
 import Row from './Row.js'
 
 class Screen extends React.Component {
@@ -23,7 +23,6 @@ class Screen extends React.Component {
   componentWillUpdate(nextProps, nextState) {
     if(nextProps.credits !== this.props.credits){
       ::this._recycle();
-      console.log('recycle');
     }
   }
 
