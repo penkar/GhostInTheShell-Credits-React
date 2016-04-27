@@ -3,6 +3,8 @@ Ghost in the Shell 1995 opening credits screen transitions.
 
 Reac App, no flux, reflux or redux. 
 
+[Example](http://jspenkar.com/GhostInTheShell-Credits-React/)
+
 Accepts a list of paramaters that will change the defaults for size and color, and some other limited functionality.
 
 Accepts an array of strings that will eventually be faded into.
