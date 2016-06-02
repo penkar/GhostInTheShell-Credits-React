@@ -33,6 +33,6 @@ let credits2 = {
 };
 
 ReactDOM.render(
-    <App params={ params } credits={ credits2 }/>,
-	document.getElementById('app')
+  <App params={ params } credits={ credits2 }/>,
+  document.getElementById('ghost')
 );

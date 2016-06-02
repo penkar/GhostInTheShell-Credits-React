@@ -1,4 +1,12 @@
 export function ParamGuide( obj ) {
+  if(!obj.height && !obj.width){
+    let ghost = document.getElementById('ghost');
+    let body = document.getElementsByTagName('body')[0];
+    let html = document.getElementsByTagName('html')[0];
+    ghost.style.height = '100%';
+    body.style.height = '100%';
+    html.style.height = '100%';
+  }
   let full = !!obj.height || !!obj.width;
   let display = full ? 'inline-block' : 'block';
   let params = {
@@ -8,6 +16,7 @@ export function ParamGuide( obj ) {
     len: 5,
     recycle: true,
     app: {
+      height: (!obj.height && !obj.width ? '100%' : ''),
       fontFamily:'monospace',
       fontSize:'1em',
       textAlign:'center',
