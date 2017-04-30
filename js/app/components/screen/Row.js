@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Col from './Col.js'
 
 class Row extends React.Component {
@@ -9,13 +10,14 @@ class Row extends React.Component {
     int: PropTypes.number
   };
 
+  constructor(props) {
+    super(props);
+    this.cols = this.cols.bind(this);
+  }
+
   cols() {
-    const { cols, int, string, params } = this.props;
-    const credit = this.props.credit || '';
-    let array = [];
-    let rand = Math.random();
-    let num = parseInt(rand * 60, 10);
-    let offset = parseInt((cols - credit.length) / 2, 10);
+    let { cols, int, string, params } = this.props, credit = this.props.credit || '', array = [], rand = Math.random();
+    let num = parseInt(rand * 60, 10), offset = parseInt((cols - credit.length) / 2, 10);
     for(let i = 0; i < this.props.cols; i++){
       let tstr = credit[i - offset] || ' ';
       array.push(
@@ -31,7 +33,7 @@ class Row extends React.Component {
   }
 
   render() {
-    return <div style={this.props.params.row}>{::this.cols()}</div>
+    return <div style={this.props.params.row}>{ this.cols() }</div>
   }
 }
 

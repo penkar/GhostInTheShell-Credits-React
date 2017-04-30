@@ -30,7 +30,7 @@
     "watchify": "^3.4.0"
   },
   "scripts": {
-    "start": "watchify ./app/index.js -v -d -o ./bundle.js",
+    "start": "watchify ./js/app/index.js -v -d -o ./dist/bundle.js",
     "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js"
   },
   "browserify": {

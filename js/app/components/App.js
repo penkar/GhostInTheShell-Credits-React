@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import Screen from './screen/Screen.js'
 import { ParamGuide } from './params/'
 
@@ -8,7 +9,14 @@ class App extends React.Component {
     this.state = {
       count:0
     };
+    this._screenDimension = this._screenDimension.bind(this);
+    this._params = this._params.bind(this);
+    this._props = this._props.bind(this);
+    this._iterate = this._iterate.bind(this);
+    this._unIterate = this._unIterate.bind(this);
+    this._credits = this._credits.bind(this);
   }
+
   static propTypes = {
     params: PropTypes.object,
     credits: PropTypes.any
@@ -27,7 +35,7 @@ class App extends React.Component {
   }
 
   _params() {
-    const { height, minHeight, width, minWidth, color, backgroundColor } = this.props.params;
+    let { height, minHeight, width, minWidth, color, backgroundColor } = this.props.params;
     let obj = {color, backgroundColor};
     if(height || minHeight || width || minWidth){
       obj.full = true;
@@ -36,42 +44,41 @@ class App extends React.Component {
   }
 
   _props() {
-    const { height, minHeight, width, minWidth } = this.props.params;
+    let { height, minHeight, width, minWidth } = this.props.params;
     let { x, y } = ::this._screenDimension();
     let rows =  Math.max(height || parseInt(y/16, 10), minHeight || 0), cols = Math.max(width || parseInt(x/16, 10), minWidth || 0);
     return {rows, cols}
   }
 
   _iterate() {
-    const { count } = this.state;
-    ::this.setState({count:count+1});
+    let { count } = this.state;
+    this.setState({count:count+1});
   }
 
   _unIterate() {
-    ::this.setState({count:0});
+    this.setState({count:0});
   }
 
   _credits(params) {
-    const { credits } = this.props;
-    const { count } = this.state;
+    let { credits } = this.props, { count } = this.state;
     if( Array.isArray(credits) ) {
       return credits;
     } else {
       if(credits[ count + 1 ]){
-        setTimeout( () => { ::this._iterate() }, 1000 * params.time )
+        setTimeout( () => { this._iterate() }, 1000 * params.time )
       } else if( params.recover ){
-        setTimeout( () => { ::this._unIterate() }, 1000 * params.time )
+        setTimeout( () => { this._unIterate() }, 1000 * params.time )
       }
       return credits[count];
     }
   }
 
   render() {
-    let { rows, cols } = ::this._props();
-    let params = ::this._params();
+    let { rows, cols } = this._props();
+    let params = this._params();
     return (
       <div style={params.app}>
-        <Screen rows={ rows } cols={ cols } credits={ ::this._credits(params) } params={ params }/>
+        <Screen rows={ rows } cols={ cols } credits={ this._credits(params) } params={ params }/>
       </div>
     )
   }
