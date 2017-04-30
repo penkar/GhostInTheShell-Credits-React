@@ -1,7 +1,8 @@
 'use strict';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render} from 'react-dom';
 import App from './components/';
+
 let params = {
   recover: false,
   time: 6,
@@ -32,7 +33,7 @@ let credits2 = {
   ]
 };
 
-ReactDOM.render(
+render(
   <App params={ params } credits={ credits2 }/>,
   document.getElementById('ghost')
 );
