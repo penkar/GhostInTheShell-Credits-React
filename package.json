@@ -6,12 +6,10 @@
   "repository": "https://github.com/penkar/",
   "main": "./app/index.js",
   "dependencies": {
-    "browserify": "^13.0.0",
-    "keymirror": "~0.1.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^16.0.0-beta.5",
+    "react-dom": "^16.0.0-beta.5",
     "react-router-redux": "^4.0.0",
-    "webpack": "^2.4.1"
+    "webpack": "^2.7.0"
   },
   "devDependencies": {
     "babel": "^6.3.26",
@@ -30,14 +28,7 @@
     "watchify": "^3.4.0"
   },
   "scripts": {
-    "start": "watchify ./js/app/index.js -v -d -o ./dist/bundle.js",
-    "build": "browserify . -t [envify --NODE_ENV production] | uglifyjs -cm > js/bundle.min.js"
-  },
-  "browserify": {
-    "transform": [
-      "babelify",
-      "reactify",
-      "envify"
-    ]
+    "start": "webpack",
+    "dev": "webpack & python -m SimpleHTTPServer"
   }
 }
