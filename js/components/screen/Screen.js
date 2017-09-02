@@ -6,7 +6,7 @@ class Screen extends React.Component {
   constructor(props) {
     super(props);
     let string = '';
-    for(let i = 0; i < 5; i++){
+    for(let i = 0; i < 5; i++) {
       string += Math.random().toString().substr(2, 15);
     }
     this.state = {string, int:0, a:0, z:props.rows};
@@ -42,7 +42,6 @@ class Screen extends React.Component {
     let {cols, rows, credits, params} = this.props, {string, int, a, z} = this.state, array = [];
     for(let i = a; i < z; i++){
       let credit = credits[i - 2 - a];
-      // array.push(<Row key={i} cols={cols} string={string} credit={credit} int={int} params={params} rec={a===i ? this._recycle : null}/>);
       array.push(Row({key:i, cols, string, credit, int, params, rec: (a===i ? this._recycle : null)}));
     }
     return array;
@@ -54,4 +53,4 @@ class Screen extends React.Component {
   }
 }
 
-export default Screen;
+export {Screen};

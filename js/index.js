@@ -1,7 +1,8 @@
 'use strict';
 import React from 'react';
 import {render} from 'react-dom';
-import App from './components/';
+
+import {App} from './components/';
 
 let params = {
   recover: false,
@@ -34,6 +35,6 @@ let credits2 = {
 };
 
 render(
-  <App params={ params } credits={ credits2 }/>,
+  <App params={ params } credits={ credits }/>,
   document.getElementById('ghost')
 );
