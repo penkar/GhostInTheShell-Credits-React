@@ -4,21 +4,19 @@ import PropTypes from 'prop-types'
 class Col extends React.Component {
   constructor(props){
     super(props);
-    this._click = this._click.bind(this);
     this.state = {bool:true};
   }
 
   static propTypes = {
-    params: PropTypes.object,
+    style: PropTypes.object,
     rand: PropTypes.number,
-    rec: PropTypes.any,
     str: PropTypes.string,
     tstr: PropTypes.string,
     int: PropTypes.number
   };
 
   shouldComponentUpdate() {
-    return !!this.state.bool;
+    return this.state.bool;
   }
 
   componentDidUpdate() {
@@ -29,17 +27,8 @@ class Col extends React.Component {
   }
 
   render() {
-    let string, style = this.props.params.col;
-    if(this.props.rec){
-      return <span style={style} onClick={this._click}>&#x02717;</span>
-    } else {
-      return <span style={style}>{(this.state.bool && this.props.str) || this.props.tstr || ' '}</span>
-    }
-  }
-
-  _click() {
-    if(this.props.rec) this.props.rec();
+    return <span style={this.props.style}>{(this.state.bool && this.props.str) || this.props.tstr || ' '}</span>
   }
 }
 
-export default Col;
+export {Col};

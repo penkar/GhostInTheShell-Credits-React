@@ -10,7 +10,6 @@ class Screen extends React.Component {
       string += Math.random().toString().substr(2, 15);
     }
     this.state = {string, int:0, a:0, z:props.rows};
-    this._recycle = this._recycle.bind(this);
     this._rows = this._rows.bind(this);
   }
 
@@ -22,7 +21,8 @@ class Screen extends React.Component {
 
   componentWillUpdate(nextProps, nextState) {
     if(nextProps.credits !== this.props.credits){
-      this._recycle();
+      let {rows} = this.props, {a, z} = this.state;
+      this.setState({ a:a + rows, z:z+rows, int:0 });
     }
   }
 
@@ -31,11 +31,6 @@ class Screen extends React.Component {
     setInterval( () => {
       this.setState({int: this.state.int + 1});
     }, 1000 / reps );
-  }
-
-  _recycle() {
-    let {rows} = this.props, {a, z} = this.state;
-    this.setState({ a:a + rows, z:z+rows, int:0 });
   }
 
   _rows() {
