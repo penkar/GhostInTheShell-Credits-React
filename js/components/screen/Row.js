@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 import {Col} from './Col.js'
 import {Rec} from './Rec.js'

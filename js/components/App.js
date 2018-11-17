@@ -19,11 +19,11 @@ class App extends React.Component {
 
     this.state = {count:0,x,y};
   }
-
-  static propTypes = {
-    params: PropTypes.object,
-    credits: PropTypes.any
-  };
+  // 
+  // propTypes = {
+  //   params: PropTypes.object,
+  //   credits: PropTypes.any
+  // };
 
   componentWillMount() {
     let body = document.getElementsByTagName('body')[0];

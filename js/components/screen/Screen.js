@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import Row from './Row.js'
 
 class Screen extends React.Component {
@@ -13,11 +13,11 @@ class Screen extends React.Component {
     this._rows = this._rows.bind(this);
   }
 
-  static propTypes = {
-    cols: PropTypes.number,
-    rows: PropTypes.number,
-    credits: PropTypes.array
-  };
+  // static propTypes = {
+  //   cols: PropTypes.number,
+  //   rows: PropTypes.number,
+  //   credits: PropTypes.array
+  // };
 
   componentWillUpdate(nextProps, nextState) {
     if(nextProps.credits !== this.props.credits){

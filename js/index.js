@@ -1,10 +1,9 @@
 'use strict';
 import React from 'react';
 import {render} from 'react-dom';
-
 import {App} from './components/';
 
-let params = {
+const params = {
   recover: false,
   time: 6,
   reps: 4,
@@ -16,13 +15,13 @@ let params = {
   backgroundColor: null
 };
 
-let credits = [
+const credits = [
   "Ghost in the Shell 1995 Opening Credits",
   "By Jeffrey Penkar",
   "http://jspenkar.com"
 ];
 
-let credits2 = {
+const credits2 = {
   0: [
     "Ghost in the Shell 1995 Opening Credits"
   ],
