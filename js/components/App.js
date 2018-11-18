@@ -7,15 +7,18 @@ type Props = {
   credits:any,
 }
 type State = {
-  count:Number,
-  x:Number,
-  y:Number,
+  count:number,
+  x:number,
+  y:number,
 }
 
 export default class App extends React.Component<Props, State> {
   constructor(props:Object) {
     super(props);
-    const w = window, d = document, e = d.documentElement, g = d.getElementsByTagName('body')[0];
+    const w:Object = window,
+      d:Object = document,
+      e:Object = d.documentElement,
+      g:Object = d.getElementsByTagName('body')[0];
     const x = w.innerWidth || e.clientWidth || g.clientWidth;
     const y = w.innerHeight|| e.clientHeight|| g.clientHeight;
     this.state = {count:0,x,y};
@@ -28,7 +31,7 @@ export default class App extends React.Component<Props, State> {
 
   _params = () => {
     let { height, minHeight, width, minWidth, color, backgroundColor } = this.props.params;
-    let obj = {color, backgroundColor};
+    let obj = {color, backgroundColor, full:false};
     if(height || minHeight || width || minWidth) {
       obj.full = true;
     }
@@ -51,7 +54,7 @@ export default class App extends React.Component<Props, State> {
     this.setState({count:0});
   }
 
-  _credits = (params) => {
+  _credits = (params:Object) => {
     let { credits } = this.props, { count } = this.state;
     if( Array.isArray(credits) ) {
       return credits;

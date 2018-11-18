@@ -2,7 +2,7 @@
 
 const ParamGuide = ( obj:Object ) =>  {
   if(!obj.height && !obj.width){
-    const ghost = document.getElementById('ghost');
+    const ghost:any = document.getElementById('ghost');
     const body = document.getElementsByTagName('body')[0];
     const html = document.getElementsByTagName('html')[0];
     ghost.style.height = '100%';
