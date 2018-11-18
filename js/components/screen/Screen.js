@@ -3,34 +3,36 @@ import React from 'react'
 import Row from './Row.js'
 
 type Props = {
-  cols: Number,
-  credits: Array<String>,
+  cols: number,
+  credits: Array<string>,
   params:Object,
-  rows: Number,
+  rows: number,
 }
 type State = {
-  a:Number,
-  int:Number,
-  rows:Number,
-  string:String,
+  a:number,
+  z:number,
+  int:number,
+  rows:number,
+  string:string,
 }
 
 export default class Screen extends React.Component<Props, State> {
-  constructor(props) {
+  constructor(props:Object) {
     super(props);
     let string = '';
     for(let i = 0; i < 5; i++) {
       string += Math.random().toString().substr(2, 15);
     }
     this.state = {
-      string,
-      int:0,
       a:0,
       z:props.rows,
+      int:0,
+      rows:0,
+      string,
     };
   }
 
-  componentWillUpdate (nextProps, nextState) {
+  componentWillUpdate (nextProps:Object, nextState:Object) {
     if(nextProps.credits !== this.props.credits){
       let {rows} = this.props, {a, z} = this.state;
       this.setState({ a:a + rows, z:z+rows, int:0 });
@@ -48,7 +50,9 @@ export default class Screen extends React.Component<Props, State> {
     let { screen } = this.props.params
     return <div style={screen}>{this._rows()}</div>
   }
-  
+
+  _recycle = () => {/* Does nothing */}
+
   _rows = () =>  {
     let {cols, rows, credits, params} = this.props, {string, int, a, z} = this.state, array = [];
     for(let i = a; i < z; i++){

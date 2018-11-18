@@ -4,7 +4,17 @@ import React from 'react'
 import Col from './Col.js'
 import {Rec} from './Rec.js'
 
-function Row ({key, cols, int, string, params, credit = '', rec}) {
+type RowType = {
+  key:number,
+  cols:number,
+  int:number,
+  string:string,
+  params:Object,
+  credit:string,
+  rec:any,
+}
+
+function Row ({key, cols, int, string, params, credit = '', rec}:RowType) {
   const array = [], rand = Math.random();
   const num = parseInt(rand * 60, 10), offset = parseInt((cols - credit.length) / 2, 10);
 

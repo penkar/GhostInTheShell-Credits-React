@@ -4,7 +4,7 @@ import Screen from './screen/Screen';
 import ParamGuide from './params/';
 type Props = {
   params:Object,
-  credits:Any,
+  credits:any,
 }
 type State = {
   count:Number,
@@ -13,7 +13,7 @@ type State = {
 }
 
 export default class App extends React.Component<Props, State> {
-  constructor(props) {
+  constructor(props:Object) {
     super(props);
     const w = window, d = document, e = d.documentElement, g = d.getElementsByTagName('body')[0];
     const x = w.innerWidth || e.clientWidth || g.clientWidth;

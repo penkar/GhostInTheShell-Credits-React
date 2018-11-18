@@ -1,5 +1,6 @@
 // @flow
-const ParamGuide = ( obj ) =>  {
+
+const ParamGuide = ( obj:Object ) =>  {
   if(!obj.height && !obj.width){
     const ghost = document.getElementById('ghost');
     const body = document.getElementsByTagName('body')[0];

@@ -2,19 +2,21 @@
 import React from 'react';
 type Props = {
   style: Object,
-  rand: Number,
-  str: String,
-  tstr: String,
-  int: Number,
+  rand: number,
+  str: string,
+  tstr: string,
+  int: number,
 }
 type State = {
-  shouldShow:Boolean,
+  shouldShow:boolean,
 }
 
 export default class Col extends React.Component<Props, State> {
-  constructor(props){
+  constructor(props:Object){
     super(props);
-    this.state = {shouldShow:true};
+    this.state = {
+      shouldShow:true
+    };
   }
 
   shouldComponentUpdate() {
