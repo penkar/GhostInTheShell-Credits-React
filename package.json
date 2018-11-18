@@ -6,7 +6,7 @@
   "repository": "https://github.com/penkar/",
   "main": "./app/index.js",
   "dependencies": {
-    "prop-types": "^15.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "react": "^16.0.0-beta.5",
     "react-dom": "^16.0.0-beta.5",
     "react-router-redux": "^4.0.0"
@@ -14,9 +14,11 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
+    "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.1",
+    "flow-bin": "^0.86.0",
     "html-webpack-plugin": "^3.2.0",
     "scss-loader": "0.0.1",
     "style-loader": "^0.23.1",
@@ -25,6 +27,7 @@
   },
   "scripts": {
     "start": "webpack --watch",
-    "dev": "webpack --watch & python -m SimpleHTTPServer"
+    "dev": "webpack --watch & python -m SimpleHTTPServer",
+    "flow": "flow"
   }
 }

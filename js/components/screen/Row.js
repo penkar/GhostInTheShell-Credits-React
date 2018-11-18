@@ -1,12 +1,12 @@
+// @flow
 import React from 'react'
-// import PropTypes from 'prop-types'
 
-import {Col} from './Col.js'
+import Col from './Col.js'
 import {Rec} from './Rec.js'
 
 function Row ({key, cols, int, string, params, credit = '', rec}) {
-  let array = [], rand = Math.random();
-  let num = parseInt(rand * 60, 10), offset = parseInt((cols - credit.length) / 2, 10);
+  const array = [], rand = Math.random();
+  const num = parseInt(rand * 60, 10), offset = parseInt((cols - credit.length) / 2, 10);
 
   for(let i = 0; i < cols; i++) {
     let tstr = credit[i - offset];

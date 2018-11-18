@@ -1,36 +1,32 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+// @flow
+import React from 'react';
+import Screen from './screen/Screen';
+import ParamGuide from './params/';
+type Props = {
+  params:Object,
+  credits:Any,
+}
+type State = {
+  count:Number,
+  x:Number,
+  y:Number,
+}
 
-import {Screen} from './screen'
-import {ParamGuide} from './params/'
-
-class App extends React.Component {
+export default class App extends React.Component<Props, State> {
   constructor(props) {
     super(props);
-    this._params = this._params.bind(this);
-    this._props = this._props.bind(this);
-    this._iterate = this._iterate.bind(this);
-    this._unIterate = this._unIterate.bind(this);
-    this._credits = this._credits.bind(this);
-
-    let w = window, d = document, e = d.documentElement, g = d.getElementsByTagName('body')[0];
-    let x = w.innerWidth || e.clientWidth || g.clientWidth;
-    let y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-
+    const w = window, d = document, e = d.documentElement, g = d.getElementsByTagName('body')[0];
+    const x = w.innerWidth || e.clientWidth || g.clientWidth;
+    const y = w.innerHeight|| e.clientHeight|| g.clientHeight;
     this.state = {count:0,x,y};
   }
-  // 
-  // propTypes = {
-  //   params: PropTypes.object,
-  //   credits: PropTypes.any
-  // };
 
-  componentWillMount() {
+  componentWillMount = () => {
     let body = document.getElementsByTagName('body')[0];
     body.style.margin = '0px';
   }
 
-  _params() {
+  _params = () => {
     let { height, minHeight, width, minWidth, color, backgroundColor } = this.props.params;
     let obj = {color, backgroundColor};
     if(height || minHeight || width || minWidth) {
@@ -39,23 +35,23 @@ class App extends React.Component {
     return ParamGuide(this.props.params);
   }
 
-  _props() {
+  _props = () => {
     let { height, minHeight, width, minWidth } = this.props.params;
     let { x, y } = this.state;
     let rows =  Math.max(height || parseInt(y/16, 10), minHeight || 0), cols = Math.max(width || parseInt(x/16, 10), minWidth || 0);
     return {rows, cols}
   }
 
-  _iterate() {
+  _iterate = () => {
     let { count } = this.state;
     this.setState({count:count+1});
   }
 
-  _unIterate() {
+  _unIterate = () => {
     this.setState({count:0});
   }
 
-  _credits(params) {
+  _credits = (params) => {
     let { credits } = this.props, { count } = this.state;
     if( Array.isArray(credits) ) {
       return credits;
@@ -70,13 +66,11 @@ class App extends React.Component {
   }
 
   render() {
-    let props = this._props(), params = this._params();
+    const props = this._props(), params = this._params();
     return (
       <div style={params.app}>
         <Screen {...props} credits={ this._credits(params) } params={ params }/>
       </div>
-    )
+    );
   }
 }
-
-export {App}

@@ -1,34 +1,38 @@
-import React from 'react'
-// import PropTypes from 'prop-types'
+// @flow
+import React from 'react';
+type Props = {
+  style: Object,
+  rand: Number,
+  str: String,
+  tstr: String,
+  int: Number,
+}
+type State = {
+  shouldShow:Boolean,
+}
 
-class Col extends React.Component {
+export default class Col extends React.Component<Props, State> {
   constructor(props){
     super(props);
-    this.state = {bool:true};
+    this.state = {shouldShow:true};
   }
 
-  // static propTypes = {
-  //   style: PropTypes.object,
-  //   rand: PropTypes.number,
-  //   str: PropTypes.string,
-  //   tstr: PropTypes.string,
-  //   int: PropTypes.number
-  // };
-
   shouldComponentUpdate() {
-    return this.state.bool;
+    return this.state.shouldShow;
   }
 
   componentDidUpdate() {
-    let { int, rand } = this.props
-    if( rand < ( int/ 50) ){
-      return this.setState({ bool:false });
+    const { int, rand } = this.props
+    if( rand < ( int/ 50) ) {
+      return this.setState({ shouldShow:false });
     }
   }
 
   render() {
-    return <span style={this.props.style}>{(this.state.bool && this.props.str) || this.props.tstr || ' '}</span>
+    return (
+      <span style={this.props.style}>
+        {(this.state.shouldShow && this.props.str) || this.props.tstr || ' '}
+      </span>
+    );
   }
 }
-
-export {Col};

@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 export function Rec(rec, style) {
   function click(){red();}

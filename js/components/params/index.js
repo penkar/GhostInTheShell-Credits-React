@@ -1,15 +1,16 @@
-export function ParamGuide( obj ) {
+// @flow
+const ParamGuide = ( obj ) =>  {
   if(!obj.height && !obj.width){
-    let ghost = document.getElementById('ghost');
-    let body = document.getElementsByTagName('body')[0];
-    let html = document.getElementsByTagName('html')[0];
+    const ghost = document.getElementById('ghost');
+    const body = document.getElementsByTagName('body')[0];
+    const html = document.getElementsByTagName('html')[0];
     ghost.style.height = '100%';
     body.style.height = '100%';
     html.style.height = '100%';
   }
-  let full = !!obj.height || !!obj.width;
-  let display = full ? 'inline-block' : 'block';
-  let params = {
+  const full = !!obj.height || !!obj.width;
+  const display = full ? 'inline-block' : 'block';
+  const params = {
     recover: obj.recover,
     time: obj.time || 5,
     reps: obj.reps || 4,
@@ -40,3 +41,5 @@ export function ParamGuide( obj ) {
 
   return params;
 }
+
+export default ParamGuide;
