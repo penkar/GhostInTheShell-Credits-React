@@ -11,7 +11,7 @@ type RowType = {
   string:string,
   params:Object,
   credit:string,
-  rec:any,
+  rec:Function,
 }
 
 function Row ({key, cols, int, string, params, credit = '', rec}:RowType) {

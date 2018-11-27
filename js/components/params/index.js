@@ -1,8 +1,20 @@
 // @flow
+type Params = {
+  height:number,
+  width:number,
+  color:string,
+  time:number,
+  reps:number,
+  recover:Function,
+  backgroundColor:string,
+}
+type Element = {
+  style:Object,
+}
 
-const ParamGuide = ( obj:Object ) =>  {
+const ParamGuide = ( obj:Params ) =>  {
   if(!obj.height && !obj.width){
-    const ghost:any = document.getElementById('ghost');
+    const ghost:Element = document.getElementById('ghost');
     const body = document.getElementsByTagName('body')[0];
     const html = document.getElementsByTagName('html')[0];
     ghost.style.height = '100%';
@@ -36,9 +48,7 @@ const ParamGuide = ( obj:Object ) =>  {
       height:'1em'
     }
   };
-  if(full){
-    params.app.display = 'inline-block';
-  }
+  if(full) params.app.display = 'inline-block';
 
   return params;
 }

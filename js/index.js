@@ -21,19 +21,18 @@ const credits = [
   "http://jspenkar.com"
 ];
 
-const credits2 = {
-  0: [
+const credits2 = [
+  [
     "Ghost in the Shell 1995 Opening Credits"
-  ],
-  1: [
+  ],[
     "Ghost in the Shell 1995 Opening Credits",
     "By Jeffrey Penkar",
     "https://github.com/penkar",
     "http://jspenkar.com"
   ]
-};
+];
 
-render(
-  <App params={ params } credits={ credits }/>,
-  document.getElementById('ghost')
-);
+const root = document.getElementById('ghost')
+if(root !== null) {
+  render(<App params={ params } credits={ credits2 }/>, root);
+}

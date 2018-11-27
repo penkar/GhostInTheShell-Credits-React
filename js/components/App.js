@@ -3,8 +3,8 @@ import React from 'react';
 import Screen from './screen/Screen';
 import ParamGuide from './params/';
 type Props = {
-  params:Object,
-  credits:any,
+  params: Object,
+  credits: Array<String>,
 }
 type State = {
   count:number,
@@ -55,16 +55,16 @@ export default class App extends React.Component<Props, State> {
   }
 
   _credits = (params:Object) => {
-    let { credits } = this.props, { count } = this.state;
-    if( Array.isArray(credits) ) {
-      return credits;
-    } else {
+    const { credits } = this.props, { count } = this.state;
+    if( Array.isArray(credits[0]) ) {
       if(credits[ count + 1 ]){
-        setTimeout( function(){this._iterate()}, 1000 * params.time );
+        setTimeout( () => {this._iterate()}, 1000 * params.time );
       } else if( params.recover ){
-        setTimeout( function(){this._unIterate()}, 1000 * params.time );
+        setTimeout( () => {this._unIterate()}, 1000 * params.time );
       }
       return credits[count];
+    } else {
+      return credits;
     }
   }
 

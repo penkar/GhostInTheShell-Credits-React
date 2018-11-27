@@ -47,7 +47,7 @@ export default class Screen extends React.Component<Props, State> {
   }
 
   render () {
-    let { screen } = this.props.params
+    const { screen } = this.props.params
     return <div style={screen}>{this._rows()}</div>
   }
 
