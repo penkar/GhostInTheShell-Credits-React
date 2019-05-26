@@ -1,10 +1,10 @@
 // @flow
-import React from 'react'
+import * as React from 'react'
 import Row from './Row.js'
 
 type Props = {
   cols: number,
-  credits: Array<string>,
+  credits: string|Array<string>|Array<string>,
   params:Object,
   rows: number,
 }
@@ -51,7 +51,10 @@ export default class Screen extends React.Component<Props, State> {
     return <div style={screen}>{this._rows()}</div>
   }
 
-  _recycle = () => {/* Does nothing */}
+  _recycle = () => {
+    console.log('recycle');
+    /* Does nothing */
+  }
 
   _rows = () =>  {
     let {cols, rows, credits, params} = this.props, {string, int, a, z} = this.state, array = [];

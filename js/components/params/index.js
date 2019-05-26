@@ -9,12 +9,12 @@ type Params = {
   backgroundColor:string,
 }
 type Element = {
-  style:Object,
+  style:{[string]:string},
 }
 
 const ParamGuide = ( obj:Params ) =>  {
   if(!obj.height && !obj.width){
-    const ghost:Element = document.getElementById('ghost');
+    const ghost: Element = document.getElementById('ghost');
     const body = document.getElementsByTagName('body')[0];
     const html = document.getElementsByTagName('html')[0];
     ghost.style.height = '100%';

@@ -1,8 +1,7 @@
 // @flow
-import React from 'react'
-
-import Col from './Col.js'
-import {Rec} from './Rec.js'
+import * as React from 'react'
+import Column from './Col.js'
+import Recycle from './Rec.js'
 
 type RowType = {
   key:number,
@@ -11,20 +10,21 @@ type RowType = {
   string:string,
   params:Object,
   credit:string,
-  rec:Function,
+  rec:?()=>any,
 }
 
-function Row ({key, cols, int, string, params, credit = '', rec}:RowType) {
-  const array = [], rand = Math.random();
-  const num = parseInt(rand * 60, 10), offset = parseInt((cols - credit.length) / 2, 10);
+const Row = ({key, cols, int, string, params, credit = '', rec}:RowType): React.Node => {
+  const array = [], rand = Math.random(),
+    num = parseInt(rand * 60, 10), 
+    offset = parseInt((cols - credit.length) / 2, 10);
 
   for(let i = 0; i < cols; i++) {
     let tstr = credit[i - offset];
     if(!i && rec) {
-      array[i] = Rec(rec, params.col);
+      array[i] = Recycle(rec, params.col);
     } else {
       array[i] = (
-        <Col
+        <Column
           key={i}
           int={int}
           str={string[num + i % 10]}

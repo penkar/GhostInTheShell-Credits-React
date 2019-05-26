@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 type Props = {
   style: Object,
   rand: number,
@@ -12,7 +12,7 @@ type State = {
 }
 
 export default class Col extends React.Component<Props, State> {
-  constructor(props:Object){
+  constructor(props:Props){
     super(props);
     this.state = {
       shouldShow:true

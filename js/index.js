@@ -34,5 +34,5 @@ const credits2 = [
 
 const root = document.getElementById('ghost')
 if(root !== null) {
-  render(<App params={ params } credits={ credits2 }/>, root);
+  render(<App params={params} credits={credits}/>, root);
 }

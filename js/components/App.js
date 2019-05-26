@@ -1,10 +1,11 @@
 // @flow
 import React from 'react';
 import Screen from './screen/Screen';
-import ParamGuide from './params/';
+import ParamGuide from './params/index.js';
+
 type Props = {
   params: Object,
-  credits: Array<String>,
+  credits: Array<string>,
 }
 type State = {
   count:number,
@@ -13,12 +14,13 @@ type State = {
 }
 
 export default class App extends React.Component<Props, State> {
-  constructor(props:Object) {
+  constructor(props:Props) {
     super(props);
     const w:Object = window,
       d:Object = document,
       e:Object = d.documentElement,
       g:Object = d.getElementsByTagName('body')[0];
+
     const x = w.innerWidth || e.clientWidth || g.clientWidth;
     const y = w.innerHeight|| e.clientHeight|| g.clientHeight;
     this.state = {count:0,x,y};
