@@ -4,13 +4,22 @@ import Column from './Col.js'
 import Recycle from './Rec.js'
 
 type RowType = {
-  key:number,
-  cols:number,
-  int:number,
-  string:string,
-  params:Object,
-  credit:string,
-  rec:?()=>any,
+  key: number,
+  cols: number,
+  int: number,
+  string: string,
+  params: {
+    app: {[string]: string},
+    col: {[string]: string},
+    row: {[string]: string},
+    screen: {[string]: string},
+    len: number,
+    recover: boolean,
+    recycle: boolean,
+    reps: number,
+  },
+  credit: string,
+  rec: ?()=>any,
 }
 
 const Row = ({key, cols, int, string, params, credit = '', rec}:RowType): React.Node => {

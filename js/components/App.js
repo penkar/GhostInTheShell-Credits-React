@@ -1,16 +1,16 @@
 // @flow
 import React from 'react';
 import Screen from './screen/Screen';
-import ParamGuide from './params/index.js';
+import ParamGuide from './params.js';
 
 type Props = {
   params: Object,
   credits: Array<string>,
 }
 type State = {
-  count:number,
-  x:number,
-  y:number,
+  count: number,
+  x: number,
+  y: number,
 }
 
 export default class App extends React.Component<Props, State> {

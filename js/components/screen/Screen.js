@@ -9,11 +9,11 @@ type Props = {
   rows: number,
 }
 type State = {
-  a:number,
-  z:number,
-  int:number,
-  rows:number,
-  string:string,
+  a: number,
+  z: number,
+  int: number,
+  rows: number,
+  string: string,
 }
 
 export default class Screen extends React.Component<Props, State> {
@@ -40,30 +40,29 @@ export default class Screen extends React.Component<Props, State> {
   }
 
   componentDidMount () {
-    const { reps } = this.props.params;
-    setInterval( () => {
-      this.setState({int: this.state.int + 1});
-    }, 1000 / reps );
+    const reps = this.props.params.reps;
+    setInterval(() => this.setState({int: this.state.int + 1}), 1000 / reps );
   }
 
-  render () {
-    const { screen } = this.props.params
-    return <div style={screen}>{this._rows()}</div>
+  render() {
+    return (
+      <div style={this.props.params.screen}>
+        { this.createRows() }
+      </div>
+    )
   }
 
-  _recycle = () => {
+  recycleDisplay = (): void => {
     console.log('recycle');
     /* Does nothing */
   }
 
-  _rows = () =>  {
-    let {cols, rows, credits, params} = this.props, {string, int, a, z} = this.state, array = [];
+  createRows = (): React.Node =>  {
+    const {cols, rows, credits, params} = this.props, {string, int, a, z} = this.state, array = [];
     for(let i = a; i < z; i++){
       let credit = credits[i - 2 - a];
-      array.push(Row({key:i, cols, string, credit, int, params, rec: (a===i ? this._recycle : null)}));
+      array.push(Row({key:i, cols, string, credit, int, params, rec: (a===i ? this.recycleDisplay : null)}));
     }
     return array;
   }
 }
-
-export {Screen};

@@ -1,21 +1,21 @@
 // @flow
 import * as React from 'react';
 type Props = {
-  style: Object,
+  style: {[string]:string},
   rand: number,
   str: string,
   tstr: string,
   int: number,
 }
 type State = {
-  shouldShow:boolean,
+  shouldShow: boolean,
 }
 
 export default class Col extends React.Component<Props, State> {
-  constructor(props:Props){
+  constructor(props:Props) {
     super(props);
     this.state = {
-      shouldShow:true
+      shouldShow: true
     };
   }
 
@@ -24,8 +24,7 @@ export default class Col extends React.Component<Props, State> {
   }
 
   componentDidUpdate() {
-    const { int, rand } = this.props
-    if( rand < ( int/ 50) ) {
+    if( this.props.rand < ( this.props.int/ 50) ) {
       return this.setState({ shouldShow:false });
     }
   }
@@ -33,7 +32,7 @@ export default class Col extends React.Component<Props, State> {
   render() {
     return (
       <span style={this.props.style}>
-        {(this.state.shouldShow && this.props.str) || this.props.tstr || ' '}
+        { this.state.shouldShow && this.props.str || this.props.tstr || ' ' }
       </span>
     );
   }

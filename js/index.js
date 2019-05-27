@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import App from './components/App';
 
 const params = {
@@ -19,9 +19,7 @@ const credits = [
   "Ghost in the Shell 1995 Opening Credits",
   "By Jeffrey Penkar",
   "http://jspenkar.com"
-];
-
-const credits2 = [
+], credits2 = [
   [
     "Ghost in the Shell 1995 Opening Credits"
   ],[

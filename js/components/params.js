@@ -1,15 +1,15 @@
 // @flow
 type Params = {
-  height:number,
-  width:number,
-  color:string,
-  time:number,
-  reps:number,
-  recover:Function,
-  backgroundColor:string,
+  height: number,
+  width: number,
+  color: string,
+  time: number,
+  reps: number,
+  recover: ()=>any,
+  backgroundColor: string,
 }
 type Element = {
-  style:{[string]:string},
+  style: {[string]: string},
 }
 
 const ParamGuide = ( obj:Params ) =>  {
@@ -49,7 +49,6 @@ const ParamGuide = ( obj:Params ) =>  {
     }
   };
   if(full) params.app.display = 'inline-block';
-
   return params;
 }
 
