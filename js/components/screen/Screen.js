@@ -45,9 +45,14 @@ export default class Screen extends React.Component<Props, State> {
   }
 
   render() {
+    const {cols, rows, credits, params} = this.props, {string, int, a, z} = this.state, array = [];
+    for(let i = a; i < z; i++){
+      let credit = credits[i - 2 - a];
+      array.push(Row({key:i, cols, string, credit, int, params, rec: (a===i ? this.recycleDisplay : null)}));
+    }
     return (
       <div style={this.props.params.screen}>
-        { this.createRows() }
+        { array }
       </div>
     )
   }
@@ -55,14 +60,5 @@ export default class Screen extends React.Component<Props, State> {
   recycleDisplay = (): void => {
     console.log('recycle');
     /* Does nothing */
-  }
-
-  createRows = (): React.Node =>  {
-    const {cols, rows, credits, params} = this.props, {string, int, a, z} = this.state, array = [];
-    for(let i = a; i < z; i++){
-      let credit = credits[i - 2 - a];
-      array.push(Row({key:i, cols, string, credit, int, params, rec: (a===i ? this.recycleDisplay : null)}));
-    }
-    return array;
   }
 }
