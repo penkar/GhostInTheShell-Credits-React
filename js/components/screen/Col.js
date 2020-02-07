@@ -1,39 +1,24 @@
-// @flow
-import * as React from 'react';
-type Props = {
+import React, { useEffect, useState } from 'react';
+import { string, number } from 'prop-types';
+
+export default function Col ({ style, rand, str, tstr, int}) {
+  const [ shouldShow, setShouldShow ] = useState(true);
+  useEffect(()=> {
+    if( shouldShow && (rand < ( int/ 50)) ) {
+      setShouldShow(false);
+    }
+  }, [rand, shouldShow, setShouldShow, int]);
+  return (
+    <span style={style}>
+      { shouldShow && str || tstr || ' ' }
+    </span>
+  );
+}
+
+Col.propTypes = {
   style: {[string]:string},
   rand: number,
   str: string,
   tstr: string,
   int: number,
-}
-type State = {
-  shouldShow: boolean,
-}
-
-export default class Col extends React.Component<Props, State> {
-  constructor(props:Props) {
-    super(props);
-    this.state = {
-      shouldShow: true
-    };
-  }
-
-  shouldComponentUpdate() {
-    return this.state.shouldShow;
-  }
-
-  componentDidUpdate() {
-    if( this.props.rand < ( this.props.int/ 50) ) {
-      return this.setState({ shouldShow:false });
-    }
-  }
-
-  render() {
-    return (
-      <span style={this.props.style}>
-        { this.state.shouldShow && this.props.str || this.props.tstr || ' ' }
-      </span>
-    );
-  }
 }
