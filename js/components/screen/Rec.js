@@ -1,6 +1,11 @@
-// @flow
-import * as React from 'react'
-const Recycle = (recycleFunction:()=>any, style:{[string]:string}): React.Node => 
-  <span key="rec" style={style} onClick={recycleFunction}>&#x02717;</span>
+import React from 'react';
+import { string, func } from 'prop-types';
 
-export default Recycle
+export default function Recycle (recycleFunction, style) {
+  return <span key="rec" style={style} onClick={recycleFunction}>&#x02717;</span>
+}
+
+Recycle.porpTypes = {
+  recycleFunction: func,
+  style: {[string]: string}
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { string, number } from 'prop-types';
+import { shape, string, number } from 'prop-types';
 
 export default function Col ({ style, rand, str, tstr, int}) {
   const [ shouldShow, setShouldShow ] = useState(true);
@@ -8,15 +8,14 @@ export default function Col ({ style, rand, str, tstr, int}) {
       setShouldShow(false);
     }
   }, [rand, shouldShow, setShouldShow, int]);
-  return (
-    <span style={style}>
-      { shouldShow && str || tstr || ' ' }
-    </span>
-  );
+  
+  return <span style={style}>{shouldShow && str || tstr || ' '}</span>;
 }
 
 Col.propTypes = {
-  style: {[string]:string},
+  style: shape({
+    [string]: string
+  }),
   rand: number,
   str: string,
   tstr: string,

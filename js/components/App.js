@@ -1,81 +1,61 @@
-// @flow
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
+import { arrayOf, boolean, number, shape, string } from 'prop-types';
 import Screen from './screen/Screen';
 import ParamGuide from './params.js';
 
-type Props = {
-  params: Object,
-  credits: Array<string>,
-}
-type State = {
-  count: number,
-  x: number,
-  y: number,
-}
+export default function App ({ params, credits }) {
+  const { backgroundColor, color, height, minHeight, minWidth, recover, time, width } = params;
+  const e = document.documentElement;
+  const g = document.querySelector('body');
+  const x = (window.innerWidth || e.clientWidth || g.clientWidth);
+  const y = (window.innerHeight|| e.clientHeight|| g.clientHeight);
+  const [ count, setCount ] = useState(0);
 
-export default class App extends React.Component<Props, State> {
-  constructor(props:Props) {
-    super(props);
-    const w:Object = window,
-      d:Object = document,
-      e:Object = d.documentElement,
-      g:Object = d.getElementsByTagName('body')[0];
+  const paramsObject = ParamGuide({
+    backgroundColor,
+    color,
+    full: Boolean(height || minHeight || width || minWidth) || false,
+  });
 
-    const x = w.innerWidth || e.clientWidth || g.clientWidth;
-    const y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-    this.state = {count:0,x,y};
-  }
+  const rows =  Math.max(height || parseInt(y/16, 10), minHeight || 0);
+  const cols = Math.max(width || parseInt(x/16, 10), minWidth || 0);
+  const props = { rows, cols };
+  const credit = Array.isArray(credits[0]) ? credits[count] : credits;
 
-  componentWillMount = () => {
-    let body = document.getElementsByTagName('body')[0];
-    body.style.margin = '0px';
-  }
+  useEffect(() => {
+    g.style.margin = "0px";
+  }, []);
 
-  _params = () => {
-    let { height, minHeight, width, minWidth, color, backgroundColor } = this.props.params;
-    let obj = {color, backgroundColor, full:false};
-    if(height || minHeight || width || minWidth) {
-      obj.full = true;
-    }
-    return ParamGuide(this.props.params);
-  }
-
-  _props = () => {
-    let { height, minHeight, width, minWidth } = this.props.params;
-    let { x, y } = this.state;
-    let rows =  Math.max(height || parseInt(y/16, 10), minHeight || 0), cols = Math.max(width || parseInt(x/16, 10), minWidth || 0);
-    return {rows, cols}
-  }
-
-  _iterate = () => {
-    let { count } = this.state;
-    this.setState({count:count+1});
-  }
-
-  _unIterate = () => {
-    this.setState({count:0});
-  }
-
-  _credits = (params:Object) => {
-    const { credits } = this.props, { count } = this.state;
-    if( Array.isArray(credits[0]) ) {
-      if(credits[ count + 1 ]){
-        setTimeout( () => {this._iterate()}, 1000 * params.time );
-      } else if( params.recover ){
-        setTimeout( () => {this._unIterate()}, 1000 * params.time );
+  useEffect(() => {
+    if(Array.isArray(credits[0])) {
+      if(credits[count + 1]) {
+        setTimeout(() => setCount(count + 1) , time * 1000)
+      } else if(recover) {
+        setTimeout(() => setCount(0) , time * 1000)
       }
-      return credits[count];
-    } else {
-      return credits;
     }
-  }
+  }, [setCount, count, credits, recover, time]);
 
-  render() {
-    const props = this._props(), params = this._params();
-    return (
-      <div style={params.app}>
-        <Screen {...props} credits={ this._credits(params) } params={ params }/>
-      </div>
-    );
-  }
+  return (
+    <div style={paramsObject.app}>
+      <Screen
+        {...props}
+        credits={credit}
+        params={paramsObject}
+      />
+    </div>
+  );
+}
+App.propTypes = {
+  params: shape({
+    backgroundColor: string,
+    color: string,
+    height: number,
+    minHeight: number,
+    minWidth: number,
+    recover: boolean,
+    width: number,
+  }),
+  credits: arrayOf(string),
 }

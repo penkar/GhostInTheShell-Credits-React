@@ -1,31 +1,13 @@
-// @flow
-import * as React from 'react'
+import React from 'react'
 import Column from './Col.js'
 import Recycle from './Rec.js'
+import { string, number, func, boolean } from 'prop-types';
 
-type RowType = {
-  key: number,
-  cols: number,
-  int: number,
-  string: string,
-  params: {
-    app: {[string]: string},
-    col: {[string]: string},
-    row: {[string]: string},
-    screen: {[string]: string},
-    len: number,
-    recover: boolean,
-    recycle: boolean,
-    reps: number,
-  },
-  credit: string,
-  rec: ?()=>any,
-}
-
-const Row = ({key, cols, int, string, params, credit = '', rec}:RowType): React.Node => {
-  const array = [], rand = Math.random(),
-    num = parseInt(rand * 60, 10), 
-    offset = parseInt((cols - credit.length) / 2, 10);
+export default function Row ({ key, cols, int, string, params, credit = '', rec }) {
+  const array = [];
+  const rand = Math.random();
+  const num = parseInt(rand * 60, 10);
+  const offset = parseInt((cols - credit.length) / 2, 10);
 
   for(let i = 0; i < cols; i++) {
     let tstr = credit[i - offset];
@@ -44,11 +26,24 @@ const Row = ({key, cols, int, string, params, credit = '', rec}:RowType): React.
       );
     }
   }
-  return (
-    <div key={key} style={params.row}>
-      { array }
-    </div>
-  )
+  return <div key={key} style={params.row}>{array}</div>;
 }
 
-export default Row;
+Row.propTypes = {
+  key: number,
+  cols: number,
+  int: number,
+  string: string,
+  params: {
+    app: {[string]: string},
+    col: {[string]: string},
+    row: {[string]: string},
+    screen: {[string]: string},
+    len: number,
+    recover: boolean,
+    recycle: boolean,
+    reps: number,
+  },
+  credit: string,
+  rec: func,
+}
