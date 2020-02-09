@@ -1,64 +1,44 @@
-// @flow
-import * as React from 'react'
-import Row from './Row.js'
+import React, { useState, useEffect } from 'react';
+import { any, oneOfType, string, number, arrayOf } from 'prop-types';
+import Row from './Row.js';
 
-type Props = {
+Screen.propTypes = {
   cols: number,
-  credits: string|Array<string>|Array<string>,
-  params:Object,
+  credits: oneOfType([
+    string, arrayOf(string)
+  ]),
+  params: any,
   rows: number,
 }
-type State = {
-  a: number,
-  z: number,
-  int: number,
-  rows: number,
-  string: string,
-}
 
-export default class Screen extends React.Component<Props, State> {
-  constructor(props:Object) {
-    super(props);
-    let string = '';
-    for(let i = 0; i < 5; i++) {
-      string += Math.random().toString().substr(2, 15);
-    }
-    this.state = {
-      a:0,
-      z:props.rows,
-      int:0,
-      rows:0,
-      string,
-    };
+export default function Screen ({ cols, credits, params, rows }) {
+  const [a, setA] = useState(0);
+  const [int, setInt] = useState(0);
+  const [z, setZ] = useState(rows);
+  /* Does nothing */
+  const recycleDisplay = () => console.log('recycle');
+
+  let str = '';
+  for(let i = 0; i < 5; i++) {
+    str += Math.random().toString().substr(2, 15);
   }
 
-  componentWillUpdate (nextProps:Object, nextState:Object) {
-    if(nextProps.credits !== this.props.credits){
-      let {rows} = this.props, {a, z} = this.state;
-      this.setState({ a:a + rows, z:z+rows, int:0 });
-    }
+  const array = [];
+  for(let i = a; i < z; i++){
+    let credit = credits[i - 2 - a];
+    array.push(Row({key:i, cols, string: str, credit, int, params, rec: (a===i ? recycleDisplay : null)}));
   }
 
-  componentDidMount () {
-    const reps = this.props.params.reps;
-    setInterval(() => this.setState({int: this.state.int + 1}), 1000 / reps );
-  }
+  useEffect(() => {
+    setTimeout(function() {
+      setInt(int + 1);
+    }, 1000 / params.reps );
+  }, [int, setInt]);
+  useEffect(() => {
+    setA(a + rows);
+    setZ(z + rows);
+    setInt(0);
+  }, [credits]);
 
-  render() {
-    const {cols, rows, credits, params} = this.props, {string, int, a, z} = this.state, array = [];
-    for(let i = a; i < z; i++){
-      let credit = credits[i - 2 - a];
-      array.push(Row({key:i, cols, string, credit, int, params, rec: (a===i ? this.recycleDisplay : null)}));
-    }
-    return (
-      <div style={this.props.params.screen}>
-        { array }
-      </div>
-    )
-  }
-
-  recycleDisplay = (): void => {
-    console.log('recycle');
-    /* Does nothing */
-  }
+  return (<div style={params.screen}>{array}</div>);
 }

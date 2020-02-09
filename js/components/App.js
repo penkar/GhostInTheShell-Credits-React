@@ -20,30 +20,23 @@ export default function App ({ params, credits }) {
 
   const rows =  Math.max(height || parseInt(y/16, 10), minHeight || 0);
   const cols = Math.max(width || parseInt(x/16, 10), minWidth || 0);
-  const props = { rows, cols };
   const credit = Array.isArray(credits[0]) ? credits[count] : credits;
 
-  useEffect(() => {
+  useEffect(function() {
     g.style.margin = "0px";
   }, []);
 
   useEffect(() => {
-    if(Array.isArray(credits[0])) {
-      if(credits[count + 1]) {
-        setTimeout(() => setCount(count + 1) , time * 1000)
-      } else if(recover) {
-        setTimeout(() => setCount(0) , time * 1000)
-      }
+    if(credits[count + 1]) {
+      setTimeout(() => setCount(count + 1) , time * 1000)
+    } else if(recover) {
+      setTimeout(() => setCount(0) , time * 1000)
     }
-  }, [setCount, count, credits, recover, time]);
+  }, [setCount, count, recover]);
 
   return (
     <div style={paramsObject.app}>
-      <Screen
-        {...props}
-        credits={credit}
-        params={paramsObject}
-      />
+      <Screen rows={rows} cols={cols} credits={credit} params={paramsObject} />
     </div>
   );
 }
