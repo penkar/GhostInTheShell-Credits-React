@@ -32,5 +32,5 @@ const credits = [
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <App params={params} credits={credits} />
-  </StrictMode>
+  </StrictMode>,
 );

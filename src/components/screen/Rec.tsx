@@ -5,10 +5,12 @@ interface RecycleProps {
   style?: CSSProperties;
 }
 
-export default function Recycle({ recycleFunction, style }: RecycleProps) {
+const Recycle = ({ recycleFunction, style }: RecycleProps) => {
   return (
     <span key="rec" style={style} onClick={recycleFunction}>
       &#x02717;
     </span>
   );
-}
+};
+
+export default Recycle;

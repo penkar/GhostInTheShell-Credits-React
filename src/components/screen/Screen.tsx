@@ -21,7 +21,6 @@ export default function Screen({
   const [int, setInt] = useState(0);
   const [z, setZ] = useState(rows);
   /* Does nothing */
-  const recycleDisplay = () => console.log('recycle');
 
   let str = '';
   for (let i = 0; i < 5; i++) {
@@ -38,16 +37,17 @@ export default function Screen({
         string={str}
         credit={credit}
         int={int}
-        rec={a === i ? recycleDisplay : null}
         params={params}
       />,
     );
   }
 
   useEffect(() => {
-    setTimeout(function () {
+    const timeout = window.setTimeout(() => {
       setInt(int + 1);
     }, 1000 / params.reps);
+
+    return () => window.clearTimeout(timeout);
   }, [int, setInt]);
 
   useEffect(() => {

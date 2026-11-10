@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { memo, useEffect, useState, type CSSProperties } from 'react';
 
 interface ColInterface {
   style?: CSSProperties;
@@ -8,7 +8,7 @@ interface ColInterface {
   int: number;
 }
 
-export default function Col({ style, rand, str, tstr, int }: ColInterface) {
+const Col = ({ style, rand, str, tstr, int }: ColInterface) => {
   const [shouldShow, setShouldShow] = useState(true);
   useEffect(() => {
     if (shouldShow && rand < int / 50) {
@@ -17,4 +17,6 @@ export default function Col({ style, rand, str, tstr, int }: ColInterface) {
   }, [rand, shouldShow, setShouldShow, int]);
 
   return <span style={style}>{(shouldShow && str) || tstr || ' '}</span>;
-}
+};
+
+export default memo(Col);
