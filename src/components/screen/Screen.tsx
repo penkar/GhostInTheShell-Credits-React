@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+
 import Row from './Row.js';
+
+import type { ParamsType } from '../types.js';
 
 interface ScreenInterface {
   cols: number;
   credits: string | string[];
-  params: any;
+  params: ParamsType;
   rows: number;
 }
 
@@ -27,7 +30,7 @@ export default function Screen({
 
   const array = [];
   for (let i = a; i < z; i++) {
-    let credit = credits[i - 2 - a];
+    const credit = credits[i - 2 - a];
     array.push(
       <Row
         key={i}
@@ -37,7 +40,7 @@ export default function Screen({
         int={int}
         rec={a === i ? recycleDisplay : null}
         params={params}
-      />
+      />,
     );
   }
 

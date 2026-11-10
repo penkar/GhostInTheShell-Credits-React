@@ -2,19 +2,7 @@ import { useState, useEffect } from 'react';
 import Screen from './screen/Screen';
 import ParamGuide from './params.ts';
 
-interface AppInterface {
-  params: {
-    backgroundColor: string | null;
-    color: string | null;
-    height: number;
-    minHeight: number;
-    minWidth: number;
-    recover: boolean | null;
-    width: number;
-    time: number;
-  };
-  credits: string[];
-}
+import type { AppInterface } from './types';
 
 export default function App({ params, credits }: AppInterface) {
   const {
@@ -41,9 +29,7 @@ export default function App({ params, credits }: AppInterface) {
     width: 0,
     time: 0,
     reps: 0,
-    recover: function () {
-      throw new Error('Function not implemented.');
-    },
+    recover: null,
   });
 
   const rows = Math.max(height || y / 16, 10, minHeight || 0);

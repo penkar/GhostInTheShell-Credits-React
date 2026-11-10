@@ -1,3 +1,5 @@
+import type { ParamsType } from './types';
+
 // @flow
 type Params = {
   height: number;
@@ -5,11 +7,11 @@ type Params = {
   color: string;
   time: number;
   reps: number;
-  recover: () => any;
+  recover: null;
   backgroundColor: string;
 };
 
-const ParamGuide = (obj: Params) => {
+const ParamGuide = (obj: Params): ParamsType => {
   if (!obj.height && !obj.width) {
     const ghost: HTMLElement | null = document.getElementById('ghost');
     const body = document.getElementsByTagName('body')[0];
@@ -23,7 +25,14 @@ const ParamGuide = (obj: Params) => {
   const full = !!obj.height || !!obj.width;
   const display = full ? 'inline-block' : 'block';
   const params = {
-    recover: obj.recover,
+    backgroundColor: obj.backgroundColor || 'black',
+    color: obj.color || 'green',
+    height: obj.height || 0,
+    minHeight: obj.height || 0,
+    width: obj.width || 0,
+    minWidth: obj.width || 0,
+
+    recover: obj.recover || null,
     time: obj.time || 5,
     reps: obj.reps || 4,
     len: 5,
@@ -48,7 +57,7 @@ const ParamGuide = (obj: Params) => {
     },
   };
   if (full) params.app.display = 'inline-block';
-  return params;
+  return params as ParamsType;
 };
 
 export default ParamGuide;

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 
 interface ColInterface {
-  style: { [key: string]: string };
+  style?: CSSProperties;
   rand: number;
   str: string;
   tstr: string;
